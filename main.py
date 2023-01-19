@@ -2,10 +2,10 @@
 import matplotlib.pyplot as plt
 import pandas
 
-excel_df = pandas.read_excel('testexcel.xlsx', sheet_name='Sheet2')
+excel_df = pandas.read_excel('testexcel.xlsx', sheet_name='Sheet3')
 print(excel_df)
 
-x = {k:g['HGB'].tolist() for k,g in excel_df.groupby('Grade')}
+x = {k:g['WBC'].tolist() for k,g in excel_df.groupby('Grading')}
 print(x)
 
 # excel_data_df.set_index('Grade').T.to_dict('list')
@@ -15,15 +15,18 @@ z =[]
 li =[]
 
 for i,p in x.items():
-    li.append(i)
+    li.append(f'Grade{i}')
     z.append(p)
     
-    
-plt.boxplot(z , labels=li, showmeans= True)
+ax = plt.subplot()
+ax.boxplot(z , labels=li, showmeans= True )
+ax.grid()
+ax.set_ylabel('WBC Count(/μl)')
+
 # plt.show()
  
 # plt.boxplot(data)
  
 
 
-plt.savefig('Gra.pngP')
+plt.savefig('Grasheet3.jpg')
